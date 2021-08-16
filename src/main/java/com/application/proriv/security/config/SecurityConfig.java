@@ -20,6 +20,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
@@ -58,8 +61,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .anyRequest().authenticated().and()
 
       // Add JWT token filter
-//      .addFilter(new JwtTokenFilter(jwtTokenUtil, authenticationManager()))
-//      .addFilterAfter(new JwtVerifierFilter(jwtTokenUtil, jwtTokenConfig), JwtTokenFilter.class);
       .addFilterBefore(new JwtVerifierFilter(jwtTokenUtil, jwtTokenConfig), UsernamePasswordAuthenticationFilter.class);
   }
 
@@ -82,16 +83,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   // Used by spring security if CORS is enabled.
   @Bean
   public CorsFilter corsFilter() {
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    CorsConfiguration config = new CorsConfiguration();
-    config.setAllowCredentials(true);
-    config.addAllowedOrigin("*");
-    config.addAllowedHeader("*");
-    config.addAllowedMethod("*");
-    source.registerCorsConfiguration("/**", config);
-    return new CorsFilter(source);
+    CorsConfiguration corsConfiguration = new CorsConfiguration();
+    corsConfiguration.setAllowCredentials(true);
+    corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+    corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
+                                                      "Accept", "Authorization", "Origin, Accept", "X-Requested-With",
+                                                      "Access-Control-Request-Method", "Access-Control-Request-Headers"));
+    corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization",
+                                                      "Access-Control-Allow-Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
+    corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+    UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+    urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+    return new CorsFilter(urlBasedCorsConfigurationSource);
   }
-
 
   // Expose authentication manager bean
   @Override

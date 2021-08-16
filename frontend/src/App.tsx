@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC } from 'react';
+import { Redirect, Route, Switch } from "react-router-dom";
+import Registration from "./components/view/Registration";
+import LoginForm from "./components/view/LoginForm";
+import Dashboard from "./components/view/Dashboard";
+import NotFound from "./components/view/NotFound";
+import { useAppSelector } from "./hooks";
 
-function App() {
+const App: FC = () => {
+
+  const isAuth = useAppSelector(state => state.auth.isAuth);
+
+
+  function redirectHandler() {
+    return isAuth ?
+        <Dashboard /> :
+        <Redirect to="/login" />;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Switch>
+        <Route exact path="/login" component={ LoginForm } />
+        <Route exact path="/registration" component={ Registration } />
+        <Route exact path="/" render={ redirectHandler } />
+        <Route path="*" component={ NotFound } />
+      </Switch>
   );
-}
 
+
+};
 export default App;

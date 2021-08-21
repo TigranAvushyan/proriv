@@ -1,6 +1,6 @@
 package com.application.proriv.service.user;
 
-import com.application.proriv.domain.model.User;
+import com.application.proriv.domain.model.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

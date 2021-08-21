@@ -1,15 +1,10 @@
-package com.application.proriv.domain.model;
+package com.application.proriv.domain.model.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author - Tigran Avushyan <tigran.avushyan@gmail.com>
@@ -20,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "authorities")
-@Builder @Data
+@Builder @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
 public class Authority {
   @Id

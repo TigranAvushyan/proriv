@@ -1,5 +1,6 @@
 package com.application.proriv.domain.model;
 
+import com.application.proriv.domain.model.order.OrderItem;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

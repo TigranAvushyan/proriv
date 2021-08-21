@@ -1,4 +1,4 @@
-package com.application.proriv.domain.model;
+package com.application.proriv.domain.model.user;
 
 
 import com.application.proriv.enums.UserStatus;
@@ -36,8 +36,12 @@ public class User {
   @Column(name = "last_name")
   private String lastName;
 
-  @Column(name = "phone")
-  private String phone;
+  @ElementCollection(fetch = FetchType.EAGER)
+  @CollectionTable(
+      name = "user_phone",
+      joinColumns = @JoinColumn(name = "user_id")
+  )
+  private List<String> phone;
 
   private boolean isEnabled;
 

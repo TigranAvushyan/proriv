@@ -1,6 +1,6 @@
 package com.application.proriv.api;
 
-import com.application.proriv.domain.model.User;
+import com.application.proriv.domain.model.user.User;
 import com.application.proriv.domain.request.AuthRequest;
 import com.application.proriv.domain.request.CreateUserRequest;
 import com.application.proriv.domain.response.ErrorResponse;

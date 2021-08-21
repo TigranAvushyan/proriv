@@ -1,6 +1,6 @@
 package com.application.proriv.repository.user;
 
-import com.application.proriv.domain.model.Role;
+import com.application.proriv.domain.model.user.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

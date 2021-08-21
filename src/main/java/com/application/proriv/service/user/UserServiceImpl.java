@@ -1,8 +1,8 @@
 package com.application.proriv.service.user;
 
-import com.application.proriv.domain.model.Authority;
-import com.application.proriv.domain.model.Role;
-import com.application.proriv.domain.model.User;
+import com.application.proriv.domain.model.user.Authority;
+import com.application.proriv.domain.model.user.Role;
+import com.application.proriv.domain.model.user.User;
 import com.application.proriv.domain.request.CreateUserRequest;
 import com.application.proriv.enums.UserStatus;
 import com.application.proriv.repository.user.AuthorityRepository;
@@ -58,6 +58,13 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  public void addPhone(String phone, String username) {
+    User user = getByUsername(username);
+    user.getPhone().add(phone);
+    save(user);
+  }
+
+  @Override
   public Authority saveAuthority(Authority authority) {
     return authorityRepository.save(authority);
   }
@@ -92,7 +99,7 @@ public class UserServiceImpl implements UserService {
           .password(pEncoder.encode(r.getPassword()))
           .firstName(r.getFirstName())
           .lastName(r.getLastName())
-          .phone(r.getPhone())
+          .phone(List.of(r.getPhone()))
           .isEnabled(true)
           .userStatus(UserStatus.ACTIVE)
           .roles(role)

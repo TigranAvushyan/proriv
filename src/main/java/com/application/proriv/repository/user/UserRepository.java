@@ -1,8 +1,8 @@
 package com.application.proriv.repository.user;
 
-import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.application.proriv.domain.model.User;
+import com.application.proriv.domain.model.user.User;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

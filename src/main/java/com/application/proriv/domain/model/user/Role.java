@@ -1,4 +1,4 @@
-package com.application.proriv.domain.model;
+package com.application.proriv.domain.model.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

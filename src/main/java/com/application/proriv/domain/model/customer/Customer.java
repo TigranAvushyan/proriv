@@ -5,26 +5,29 @@ import com.application.proriv.domain.model.order.Order;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Null;
 import java.util.List;
+import java.util.Set;
 
 @Table(name = "customer")
 @Entity
-@Getter @Setter @Builder
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @Column(name = "name")
+  private String name;
+
   @ElementCollection(fetch = FetchType.EAGER)
   @CollectionTable(
       joinColumns = @JoinColumn(name = "customer_phone")
   )
-  private List<String> phone;
-
-  @Column(name = "name")
-  private String name;
+  private Set<String> phone;
 
 
   @OneToOne

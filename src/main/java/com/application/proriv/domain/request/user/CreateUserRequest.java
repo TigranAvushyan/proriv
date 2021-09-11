@@ -1,4 +1,4 @@
-package com.application.proriv.domain.request;
+package com.application.proriv.domain.request.user;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +13,8 @@ import javax.validation.constraints.NotBlank;
  */
 
 
-@Getter @Setter
+@Getter
+@Setter
 public class CreateUserRequest {
 
   @NotBlank

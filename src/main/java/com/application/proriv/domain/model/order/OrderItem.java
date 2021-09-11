@@ -7,8 +7,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "order_item")
-@Getter @Setter @ToString
-@Builder @NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderItem {
 
   @Id

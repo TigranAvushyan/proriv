@@ -4,7 +4,7 @@ package com.application.proriv.service.user;
 import com.application.proriv.domain.model.user.Authority;
 import com.application.proriv.domain.model.user.Role;
 import com.application.proriv.domain.model.user.User;
-import com.application.proriv.domain.request.CreateUserRequest;
+import com.application.proriv.domain.request.user.CreateUserRequest;
 
 import javax.persistence.EntityExistsException;
 import java.util.List;

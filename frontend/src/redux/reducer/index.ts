@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
 import auth from "./auth";
-import massage from "./message";
+import order from "./order";
+import customer from "./customer";
 
 export const rootReducer = combineReducers({
-  auth, massage
+  auth, order, customer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

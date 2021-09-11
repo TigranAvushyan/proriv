@@ -1,8 +1,8 @@
-import * as AuthActionCreator from "./auth"
-import * as MassageActionCreator from "./message"
+import * as AuthActionCreator from "./auth";
+import * as OrderActionCreator from "./order";
 
 
 export default {
   ...AuthActionCreator,
-  ...MassageActionCreator
-}
+  ...OrderActionCreator
+};

@@ -1,8 +1,8 @@
 package com.application.proriv.api;
 
 import com.application.proriv.domain.model.user.User;
-import com.application.proriv.domain.request.AuthRequest;
-import com.application.proriv.domain.request.CreateUserRequest;
+import com.application.proriv.domain.request.user.AuthRequest;
+import com.application.proriv.domain.request.user.CreateUserRequest;
 import com.application.proriv.domain.response.ErrorResponse;
 import com.application.proriv.domain.response.UserViewResponse;
 import com.application.proriv.security.jwt.JwtTokenUtil;
@@ -49,8 +49,8 @@ public class AuthController {
     try {
       User user = userService.create(request);
       UserViewResponse body = new UserViewResponse(user.getUsername(),
-                                                   user.getFirstName(),
-                                                   user.getLastName());
+          user.getFirstName(),
+          user.getLastName());
 
       return ResponseEntity.ok().body(body);
 
@@ -59,8 +59,8 @@ public class AuthController {
       ErrorResponse body = new ErrorResponse(e.getMessage(), "/api/public/registration");
 
       return ResponseEntity
-        .status(CONFLICT)
-        .body(body);
+          .status(CONFLICT)
+          .body(body);
     }
   }
 
@@ -68,9 +68,9 @@ public class AuthController {
   public ResponseEntity<?> login(@RequestBody @Valid AuthRequest request) {
     try {
       Authentication authenticate = authenticationManager
-        .authenticate(new UsernamePasswordAuthenticationToken(
-          request.getUsername(), request.getPassword()
-        ));
+          .authenticate(new UsernamePasswordAuthenticationToken(
+              request.getUsername(), request.getPassword()
+          ));
       String token = jwtTokenUtil.createToken(request.getUsername(), authenticate.getAuthorities());
 
       return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION, token).build();

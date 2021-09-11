@@ -15,14 +15,17 @@ import java.util.Set;
 
 @Entity
 @Table(name = "authorities")
-@Builder @Getter @Setter
-@AllArgsConstructor @NoArgsConstructor
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Authority {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name= "name")
+  @Column(name = "name")
   private String name;
 
   @ManyToMany(mappedBy = "authorities")

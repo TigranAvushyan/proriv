@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { LoginRequest } from "../../types/auth";
+import { LoginRequest } from "../types/auth";
 import { History } from "history";
-import { useAppActions, useAppSelector } from "../../hooks";
+import { useAppActions, useAppSelector } from "../hools/hooks";
 import { Button, Col, Form, Input, Row } from "antd";
 import { Link } from "react-router-dom";
 
@@ -15,7 +15,7 @@ const LoginForm: FC<PropsType> = ({ history }) => {
 
   const { login } = useAppActions();
 
-  const loading = useAppSelector(state => state.auth.isLoading)
+  const loading = useAppSelector(state => state.auth.isLoading);
 
   const onSubmit = (request: LoginRequest) => {
     login(request, history);

@@ -17,6 +17,10 @@ public interface CustomerService {
 
   Customer getCustomerByName(String name);
 
+  void addPhone(Long id, String phone);
+
   void createCustomer(Customer customer);
+
+  public List<String> wo();
 
 }

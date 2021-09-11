@@ -1,20 +1,18 @@
-package com.application.proriv.service;
+package com.application.proriv.service.order;
 
 
 import com.application.proriv.domain.model.Product;
 import com.application.proriv.domain.model.customer.Customer;
 import com.application.proriv.domain.model.order.Order;
 import com.application.proriv.domain.model.order.OrderItem;
-import com.application.proriv.domain.request.OrderChangeRequest;
-import com.application.proriv.domain.request.OrderCreateRequest;
-import com.application.proriv.repository.ProductRepository;
+import com.application.proriv.domain.request.order.OrderChangeRequest;
+import com.application.proriv.domain.request.order.OrderCreateRequest;
 import com.application.proriv.repository.order.OrderItemRepository;
 import com.application.proriv.repository.order.OrderRepository;
 import com.application.proriv.service.customer.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
@@ -24,13 +22,14 @@ import static com.application.proriv.enums.OrderStatus.ACCEPTED;
 
 @Service
 @RequiredArgsConstructor
-public class OrderService {
+public class OrderServiceImpl implements OrderService {
 
   private final OrderRepository orderRepository;
   private final OrderItemRepository orderItemRepository;
-  private final ProductRepository productRepository;
+  private final ProductService productService;
   private final CustomerService customerService;
 
+  @Override
   public Order createOrder(Customer customer) {
     Order order = Order.builder()
         .date(new Date())
@@ -46,13 +45,13 @@ public class OrderService {
   }
 
   @Transactional
+  @Override
   public void addOrderItems(OrderCreateRequest orderCreateRequest) {
     Customer customer = customerService.getCustomerById(orderCreateRequest.getCustomerId());
     Order order = createOrder(customer);
     orderCreateRequest.getOrderItems().forEach(item -> {
       Long productId = item.getProductId();
-      Product product = productRepository.findProductById(productId)
-          .orElseThrow(() -> new EntityNotFoundException("Product not found"));
+      Product product = productService.getById(productId);
 
       OrderItem orderItem = OrderItem.builder()
           .order(order)
@@ -66,6 +65,8 @@ public class OrderService {
     });
   }
 
+  @Transactional
+  @Override
   public void changeOrder(OrderChangeRequest changeRequest) {
     changeRequest.getOrderItems().forEach(item -> {
       OrderItem orderItem = orderItemRepository.findOrderItemById(item.getOrderItemId());
@@ -78,4 +79,5 @@ public class OrderService {
       orderItemRepository.save(orderItem);
     });
   }
+
 }

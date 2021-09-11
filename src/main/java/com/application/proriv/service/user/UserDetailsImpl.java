@@ -23,8 +23,8 @@ public class UserDetailsImpl implements UserDetails {
   private final Set<SimpleGrantedAuthority> authorities;
 
   public UserDetailsImpl(
-    String username, String password, boolean isEnabled,
-    Set<SimpleGrantedAuthority> authorities
+      String username, String password, boolean isEnabled,
+      Set<SimpleGrantedAuthority> authorities
   ) {
     this.username = username;
     this.password = password;
@@ -34,11 +34,11 @@ public class UserDetailsImpl implements UserDetails {
 
   public static UserDetails fromUser(User user) {
     return new org.springframework.security.core.userdetails.User(
-      user.getUsername(),
-      user.getPassword(),
-      user.isEnabled(),
-      true,true,true,
-      user.getAuthorities()
+        user.getUsername(),
+        user.getPassword(),
+        user.isEnabled(),
+        true, true, true,
+        user.getAuthorities()
     );
   }
 

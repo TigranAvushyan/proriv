@@ -3,7 +3,7 @@ package com.application.proriv.service.user;
 import com.application.proriv.domain.model.user.Authority;
 import com.application.proriv.domain.model.user.Role;
 import com.application.proriv.domain.model.user.User;
-import com.application.proriv.domain.request.CreateUserRequest;
+import com.application.proriv.domain.request.user.CreateUserRequest;
 import com.application.proriv.enums.UserStatus;
 import com.application.proriv.repository.user.AuthorityRepository;
 import com.application.proriv.repository.user.RoleRepository;
@@ -44,10 +44,10 @@ public class UserServiceImpl implements UserService {
   @Override
   public User getByUsername(String username) {
     User user = userRepository
-      .findByUsername(username)
-      .orElseThrow(
-        () -> new UsernameNotFoundException("User by name " + username + " doesn't exist")
-      );
+        .findByUsername(username)
+        .orElseThrow(
+            () -> new UsernameNotFoundException("User by name " + username + " doesn't exist")
+        );
     log.info("Got user by username: {}", user.getUsername());
     return user;
   }
@@ -86,24 +86,24 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public User create(
-    CreateUserRequest r
+      CreateUserRequest r
   ) {
     if (userRepository.existsByUsername(r.getUsername())) {
-      throw new EntityExistsException("User by username is "+ r.getUsername() +" already exists");
+      throw new EntityExistsException("User by username is " + r.getUsername() + " already exists");
     }
     Set<Role> role = Set.of(roleRepository.findByName("ROLE_USER"));
 
     return userRepository.save(
-      User.builder()
-          .username(r.getUsername())
-          .password(pEncoder.encode(r.getPassword()))
-          .firstName(r.getFirstName())
-          .lastName(r.getLastName())
-          .phone(List.of(r.getPhone()))
-          .isEnabled(true)
-          .userStatus(UserStatus.ACTIVE)
-          .roles(role)
-          .build()
+        User.builder()
+            .username(r.getUsername())
+            .password(pEncoder.encode(r.getPassword()))
+            .firstName(r.getFirstName())
+            .lastName(r.getLastName())
+            .phone(List.of(r.getPhone()))
+            .isEnabled(true)
+            .userStatus(UserStatus.ACTIVE)
+            .roles(role)
+            .build()
     );
   }
 }

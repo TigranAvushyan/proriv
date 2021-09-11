@@ -1,11 +1,12 @@
 import React, { FC } from "react";
+import OrderTable from "./order/OrderTable";
 
 const Dashboard: FC = () => {
 
 
   return (
       <div>
-        <h1>Dashboard</h1>
+        <OrderTable />
       </div>
   );
 };

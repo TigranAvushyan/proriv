@@ -1,7 +1,7 @@
 package com.application.proriv.service.user;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import com.application.proriv.domain.model.user.User;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

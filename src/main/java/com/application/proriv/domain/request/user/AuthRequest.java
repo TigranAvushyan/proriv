@@ -1,4 +1,4 @@
-package com.application.proriv.domain.request;
+package com.application.proriv.domain.request.user;
 
 import lombok.Getter;
 import lombok.Setter;

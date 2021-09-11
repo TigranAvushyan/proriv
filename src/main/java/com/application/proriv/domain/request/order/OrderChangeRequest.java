@@ -1,4 +1,4 @@
-package com.application.proriv.domain.request;
+package com.application.proriv.domain.request.order;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,8 @@ import java.util.Set;
  * @project - proriv
  */
 
-@Getter @Setter
+@Getter
+@Setter
 public class OrderChangeRequest {
   private Set<OrderItemRequest> orderItems;
 }

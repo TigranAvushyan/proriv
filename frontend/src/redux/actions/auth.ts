@@ -15,8 +15,6 @@ export const login = (request: LoginRequest, history: History<LocationState>) =>
 
       const res = await http.post("/auth/login", request);
 
-      setTimeout(() => console.log("hello", 1500));
-
       const token = res.headers.authorization;
       dispatch({
         type: AuthActionTypes.AUTH_SUCCESS,
@@ -24,7 +22,6 @@ export const login = (request: LoginRequest, history: History<LocationState>) =>
       });
 
       localStorage.setItem("token", token);
-      http.defaults.headers.common["Authorization"] = token;
       history.push("/");
     } catch (e) {
       localStorage.removeItem("token");

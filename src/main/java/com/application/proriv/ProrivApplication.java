@@ -1,8 +1,8 @@
 package com.application.proriv;
 
 
+import com.application.proriv.domain.fake.FakeProducts;
 import com.application.proriv.domain.model.Address;
-import com.application.proriv.domain.model.Product;
 import com.application.proriv.domain.model.customer.Customer;
 import com.application.proriv.domain.model.user.Authority;
 import com.application.proriv.domain.model.user.Role;
@@ -37,11 +37,6 @@ public class ProrivApplication {
       BCryptPasswordEncoder passwordEncoder
   ) {
 
-    Product pr1 = new Product();
-    pr1.setName("pizza");
-
-    Product pr2 = new Product();
-    pr2.setName("samsa");
 
     Authority sr = Authority.builder().name("system:read").build();
     Authority sw = Authority.builder().name("system:write").build();
@@ -118,13 +113,13 @@ public class ProrivApplication {
 
     Customer oficerova = Customer.builder()
         .name("Офицерова")
-        .phone(List.of("+79109177778"))
+        .phone(Set.of("+79109177778"))
         .address(kn)
         .build();
 
     Customer knjnaya = Customer.builder()
         .name("Книжная Находка")
-        .phone(List.of("+79109177720"))
+        .phone(Set.of("+79109177720"))
         .address(kn)
         .build();
 
@@ -133,11 +128,10 @@ public class ProrivApplication {
       addressRepository.save(of);
       addressRepository.save(kn);
 
+      productRepository.saveAll(FakeProducts.getProducts());
+
       customerService.createCustomer(oficerova);
       customerService.createCustomer(knjnaya);
-
-      productRepository.save(pr1);
-      productRepository.save(pr2);
 
       userService.saveAuthority(sr);
       userService.saveAuthority(sw);

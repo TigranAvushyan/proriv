@@ -5,7 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css";
 import "./assets/style/index.scss";
 
 ReactDOM.render(

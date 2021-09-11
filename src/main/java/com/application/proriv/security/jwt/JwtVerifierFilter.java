@@ -36,7 +36,7 @@ public class JwtVerifierFilter extends OncePerRequestFilter {
 
   @Override
   protected void doFilterInternal(
-    HttpServletRequest request, HttpServletResponse response, FilterChain filterChain
+      HttpServletRequest request, HttpServletResponse response, FilterChain filterChain
   ) throws ServletException, IOException {
     String tokenWithBearer = request.getHeader(jwtTokenConfig.getHeader());
 
@@ -60,14 +60,14 @@ public class JwtVerifierFilter extends OncePerRequestFilter {
     List<Map<String, String>> authorities = (List<Map<String, String>>) body.get("authorities");
 
     Set<SimpleGrantedAuthority> simpleGrantedAuthorities = authorities.stream()
-                                                                      .map(m -> new SimpleGrantedAuthority(m.get(
-                                                                        "authority")))
-                                                                      .collect(Collectors.toSet());
+        .map(m -> new SimpleGrantedAuthority(m.get(
+            "authority")))
+        .collect(Collectors.toSet());
 
     Authentication authentication = new UsernamePasswordAuthenticationToken(
-      username,
-      null,
-      simpleGrantedAuthorities
+        username,
+        null,
+        simpleGrantedAuthorities
     );
 
     SecurityContextHolder.getContext().setAuthentication(authentication);

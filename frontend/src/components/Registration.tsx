@@ -1,24 +1,24 @@
 import React, { FC } from "react";
 import { Button, Col, Form, Input, message, Row } from "antd";
-import { RegistrationRequest } from "../../types/auth";
-import http from "../../axios/http";
+import { RegistrationRequest } from "../types/auth";
+import http from "../axios/http";
 import { History } from "history";
 
-const Registration: FC<{history: History}> = ({history}) => {
+const Registration: FC<{ history: History }> = ({ history }) => {
 
 
   const [loading, setLoading] = React.useState<boolean>(false);
 
 
   const onSubmit = async (value: RegistrationRequest) => {
-    setLoading(true)
+    setLoading(true);
     try {
       await http.post("/auth/registration", value);
       history.push("/login");
     } catch (e) {
-      message.error("Логин уже занят!")
+      message.error("Логин уже занят!");
     } finally {
-      setLoading(false)
+      setLoading(false);
 
     }
   };
@@ -85,7 +85,7 @@ const Registration: FC<{history: History}> = ({history}) => {
 
 
               <Form.Item wrapperCol={ { offset: 8, span: 16 } }>
-                <Button type="primary" htmlType="submit" loading={loading}>
+                <Button type="primary" htmlType="submit" loading={ loading }>
                   Зарегистрироваться
                 </Button>
               </Form.Item>

@@ -14,8 +14,10 @@ import java.util.Objects;
 @Entity
 @Table(name = "orders")
 @Getter
-@Setter @Builder
-@NoArgsConstructor @AllArgsConstructor
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Order {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

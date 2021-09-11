@@ -13,9 +13,12 @@ import javax.persistence.*;
  */
 
 
-@Getter @Setter
+@Getter
+@Setter
 @Entity
-@Builder @NoArgsConstructor @AllArgsConstructor
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "address")
 public class Address {
 

@@ -1,23 +1,30 @@
 package com.application.proriv.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.application.proriv.domain.model.order.OrderItem;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @Entity
+@Builder
+@Table(name = "products")
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "products")
 public class Product {
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
+  @Column(name = "name")
   private String name;
 
+  @Column(name = "price")
+  private int price;
+
   @OneToOne(mappedBy = "product")
+  @JsonIgnore
   private OrderItem orderItem;
 }

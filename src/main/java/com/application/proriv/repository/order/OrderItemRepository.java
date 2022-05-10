@@ -1,6 +1,6 @@
 package com.application.proriv.repository.order;
 
-import com.application.proriv.domain.model.OrderItem;
+import com.application.proriv.domain.model.order.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +12,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
+  OrderItem findOrderItemById(Long id);
 }

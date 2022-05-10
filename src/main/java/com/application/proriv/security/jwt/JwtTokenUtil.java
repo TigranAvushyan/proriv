@@ -44,12 +44,12 @@ public class JwtTokenUtil {
 
   public String createToken(String username, Collection<? extends GrantedAuthority> authorities) {
     return jwtTokenConfig.getBearer() + Jwts.builder()
-                                            .setSubject(username)
-                                            .claim("authorities", authorities)
-                                            .setIssuedAt(new Date())
-                                            .setExpiration(java.sql.Date.valueOf(LocalDate.now().plusDays(3)))
-                                            .signWith(SignatureAlgorithm.HS256, jwtTokenConfig.getKey())
-                                            .compact();
+        .setSubject(username)
+        .claim("authorities", authorities)
+        .setIssuedAt(new Date())
+        .setExpiration(java.sql.Date.valueOf(LocalDate.now().plusDays(3)))
+        .signWith(SignatureAlgorithm.HS256, jwtTokenConfig.getKey())
+        .compact();
   }
 
   public Claims jwtParser(String token) {

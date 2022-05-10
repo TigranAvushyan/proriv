@@ -1,6 +1,7 @@
-package com.application.proriv.domain.request;
+package com.application.proriv.domain.request.user;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author - Tigran Avushyan <tigran.avushyan@gmail.com>
@@ -8,7 +9,9 @@ import lombok.Data;
  * @project - proriv
  */
 
-@Data
+
+@Getter
+@Setter
 public class AuthRequest {
   private String username;
   private String password;
